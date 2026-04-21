@@ -1,0 +1,347 @@
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: rgba(20, 20, 20, 0.85);
+    --accent-primary: #e63946;
+    --accent-secondary: #ff6b6b;
+    --text-main: #f1f1f1;
+    --text-muted: #888888;
+    --glass-border: rgba(230, 57, 70, 0.15);
+    --shadow-glow: 0 0 30px rgba(230, 57, 70, 0.35);
+    --font-family: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-family);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Background Animation */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 15% 50%, #1a0000 0%, #0a0a0a 60%),
+                radial-gradient(circle at 85% 30%, #1a0505 0%, transparent 50%);
+}
+
+.background-animation::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(rgba(230, 57, 70, 0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: rotate 120s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Layout */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* =====================
+   HEADER
+   ===================== */
+header {
+    padding: 5rem 0 3rem;
+    text-align: center;
+    position: relative;
+}
+
+header::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(to right, var(--accent-primary), transparent);
+    margin: 1.5rem auto 0;
+    border-radius: 99px;
+}
+
+header h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    letter-spacing: -3px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+header h1 span {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* =====================
+   RANKING SECTION
+   ===================== */
+.ranking-section {
+    margin-bottom: 5rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.section-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.badge {
+    background: rgba(230, 57, 70, 0.12);
+    color: var(--accent-primary);
+    padding: 0.4rem 1rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border: 1px solid rgba(230, 57, 70, 0.3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: pulse-badge 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.3); }
+    50%       { box-shadow: 0 0 0 6px rgba(230, 57, 70, 0); }
+}
+
+/* Ranking Grid */
+.ranking-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* =====================
+   GAME CARD
+   ===================== */
+.game-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.2rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Red left accent bar */
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--accent-primary), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.game-card:hover {
+    transform: translateX(8px) scale(1.015);
+    border-color: rgba(230, 57, 70, 0.4);
+    box-shadow: var(--shadow-glow);
+}
+
+.game-card:hover::before {
+    opacity: 1;
+}
+
+/* ── Game Thumbnail ── */
+.game-thumbnail {
+    width: 130px;
+    height: 100px;
+    min-width: 130px;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin: 0.8rem;
+    filter: brightness(0.85) saturate(1.1);
+    transition: filter 0.3s ease;
+}
+
+.game-card:hover .game-thumbnail {
+    filter: brightness(1) saturate(1.3);
+}
+
+/* ── Rank Number ── */
+.rank-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    min-width: 55px;
+    text-align: center;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+}
+
+.game-card:hover .rank-number {
+    opacity: 0.8;
+    color: var(--accent-primary);
+}
+
+.rank-number.top-1 { color: #ffd700; opacity: 0.9; }
+.rank-number.top-2 { color: #c0c0c0; opacity: 0.9; }
+.rank-number.top-3 { color: #cd7f32; opacity: 0.9; }
+
+/* ── Game Info ── */
+.game-info {
+    flex-grow: 1;
+}
+
+.game-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+}
+
+.platform-tag {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    background: rgba(230, 57, 70, 0.1);
+    border: 1px solid rgba(230, 57, 70, 0.2);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    color: var(--accent-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* ── Score ── */
+.score-container {
+    text-align: right;
+    padding-right: 1.8rem;
+}
+
+.score-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    line-height: 1;
+}
+
+.score-label {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+}
+
+/* =====================
+   ANIMATIONS
+   ===================== */
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateX(-20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.game-card {
+    opacity: 0;
+    animation: fadeInSlide 0.55s ease-out forwards;
+}
+
+.game-card:nth-child(1) { animation-delay: 0.1s; }
+.game-card:nth-child(2) { animation-delay: 0.22s; }
+.game-card:nth-child(3) { animation-delay: 0.34s; }
+.game-card:nth-child(4) { animation-delay: 0.46s; }
+.game-card:nth-child(5) { animation-delay: 0.58s; }
+
+/* =====================
+   FOOTER
+   ===================== */
+footer {
+    padding: 3rem 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+footer span {
+    color: var(--accent-primary);
+}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 3rem;
+    }
+
+    .game-card {
+        padding: 0;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.8rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .game-thumbnail {
+        width: 100%;
+        min-width: unset;
+        height: 160px;
+        border-radius: 1.2rem 1.2rem 0 0;
+        margin: 0;
+    }
+
+    .rank-number {
+        min-width: unset;
+    }
+
+    .score-container {
+        text-align: center;
+        padding-right: 0;
+    }
+
+    .game-card:hover {
+        transform: scale(1.02);
+    }
+}
