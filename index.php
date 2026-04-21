@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php';
+require_once 'config.php';
 
 // Fetch games with their platform names and cover images, ordered by score
 $stmt = $pdo->query("
@@ -37,10 +37,17 @@ $juegos = $stmt->fetchAll();
         <section class="ranking-section">
             <div class="section-header">
                 <h2>🏆 Ranking Global</h2>
-                <div class="badge">🔴 En vivo</div>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <a href="nuevo.php" class="btn">Añadir Juego</a>
+                    <div class="badge">🔴 En vivo</div>
+                </div>
             </div>
 
             <div class="ranking-grid">
+                <?php if (count($juegos) === 0): ?>
+                    <p style="text-align: center; color: var(--text-muted); padding: 2rem;">No hay juegos registrados aún. ¡Añade el primero!</p>
+                <?php endif; ?>
+
                 <?php foreach ($juegos as $index => $juego): ?>
                     <?php
                         // Use imagen_url from DB; fall back to a picsum placeholder if empty
@@ -62,7 +69,7 @@ $juegos = $stmt->fetchAll();
                             loading="lazy"
                             width="300"
                             height="200"
-                            onerror="this.src='https://picsum.photos/300/200?grayscale'"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80';"
                         >
                         <div class="rank-number <?php echo $rankClass; ?>">#<?php echo $index + 1; ?></div>
                         <div class="game-info">
@@ -81,7 +88,7 @@ $juegos = $stmt->fetchAll();
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 <span>GameRank</span>. Todos los derechos reservados.</p>
+            <p>&copy; <?php echo date('Y'); ?> <span>GameRank</span>. Todos los derechos reservados.</p>
         </div>
     </footer>
 </body>

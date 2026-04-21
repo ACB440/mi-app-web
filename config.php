@@ -1,11 +1,11 @@
 <?php
 /**
- * DB Connection Helper
- * Uses PDO for secure database interactions.
+ * config.php
+ * Conexión a la base de datos 'gestion_juegos' usando PDO.
  */
 
 $host = 'localhost';
-$db   = 'ranking_juegos';
+$db   = 'gestion_juegos';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
@@ -20,7 +20,6 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    // In a production environment, you should log error and show a generic message.
     die("Error de conexión: " . $e->getMessage());
 }
 ?>

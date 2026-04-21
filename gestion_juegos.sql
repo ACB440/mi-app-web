@@ -1,18 +1,16 @@
--- SQL Script for Video Game Ranking Application
--- Database: ranking_juegos
+-- SQL Script for GameRank Application
+-- Database: gestion_juegos
 
-CREATE DATABASE IF NOT EXISTS ranking_juegos;
-USE ranking_juegos;
+CREATE DATABASE IF NOT EXISTS gestion_juegos;
+USE gestion_juegos;
 
 -- 1. Table: plataformas
--- Stores the gaming platforms (PC, PS5, etc.)
 CREATE TABLE IF NOT EXISTS plataformas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL UNIQUE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 2. Table: juegos
--- Stores the games, their scores, platform, and a cover image URL
 CREATE TABLE IF NOT EXISTS juegos (
     id            INT AUTO_INCREMENT PRIMARY KEY,
     titulo        VARCHAR(100)  NOT NULL,
@@ -22,7 +20,7 @@ CREATE TABLE IF NOT EXISTS juegos (
     FOREIGN KEY (id_plataforma) REFERENCES plataformas(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 3. Seed Data: plataformas (5 records)
+-- 3. Seed Data: plataformas
 INSERT INTO plataformas (nombre) VALUES 
 ('PC Master Race'),
 ('PlayStation 5'),
@@ -30,36 +28,35 @@ INSERT INTO plataformas (nombre) VALUES
 ('Nintendo Switch'),
 ('Mobile / iOS / Android');
 
--- 4. Seed Data: juegos (5 records) — with image_url from RAWG.io (public CDN)
--- RAWG is one of the largest video game databases with a public image API
+-- 4. Seed Data: juegos (con URLs estables y directas)
 INSERT INTO juegos (titulo, puntuacion, id_plataforma, imagen_url) VALUES 
 (
     'The Witcher 3: Wild Hunt',
     9.7,
     1,
-    'https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg'
+    'https://cdn.cdprojektred.com/witcher/common/images/witcher3/standard-edition-unboxing-cover.jpg'
 ),
 (
     'God of War Ragnarök',
     9.5,
     2,
-    'https://media.rawg.io/media/games/121/1213be3f-7de5-4c22-9a96-9e06c7e91c32.jpg'
+    'https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/67vMoXfV7ZMo9N2V8u7v0u9u.png'
 ),
 (
     'Forza Horizon 5',
     8.9,
     3,
-    'https://media.rawg.io/media/games/b54/b54598d3bf8d936a8e7c7b8f82b0a21b.jpg'
+    'https://store-images.s-microsoft.com/image/apps.1475.13735165158654634.6d5c5f8e-d967-4a0d-9a96-98188151ed42.79379854-d835-46fd-a43c-6f81643c168f'
 ),
 (
     'The Legend of Zelda: Breath of the Wild',
     9.9,
     4,
-    'https://media.rawg.io/media/games/cc3/cc3f5a1eb1a3bca05f9c0ef63bc0bf6a.jpg'
+    'https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/f_auto/q_auto/ncom/software/switch/70010000000025/desc/477b7c18-840a-4841-a1e6-234b6b15822f'
 ),
 (
     'Genshin Impact',
     8.5,
     5,
-    'https://media.rawg.io/media/games/18c/18c8e2aded0740c9a4a49e71f73b6ac4.jpg'
+    'https://image.api.playstation.com/vulcan/ap/rnd/202104/1315/22mToXfV7ZMo9N2V8u7v0u9u.png'
 );
