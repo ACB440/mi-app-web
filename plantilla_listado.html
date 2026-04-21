@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameRank - Listado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="plantilla_style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <div class="logo">Game<span>Rank</span></div>
+            <ul class="nav-links">
+                <li><a href="plantilla_listado.html" class="active">Ranking</a></li>
+                <li><a href="plantilla_alta.html">Añadir Juego</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container main-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+            <h2 class="section-title" style="margin-bottom: 0; border: none; padding: 0;">Ranking Global</h2>
+            <a href="plantilla_alta.html" class="btn" style="width: auto; padding: 0.6rem 1.5rem;">+ Añadir</a>
+        </div>
+        
+        <div class="ranking-grid">
+            <!-- Tarjeta Ejemplo 1 -->
+            <article class="game-card">
+                <img class="game-image" src="https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png" alt="The Witcher 3" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80'">
+                <div class="game-details">
+                    <a href="plantilla_detalle.html"><h3 class="game-title">The Witcher 3: Wild Hunt</h3></a>
+                    <span class="game-platform">PC Master Race</span>
+                </div>
+                <div class="game-score">
+                    <span class="score-value">9.7</span>
+                    <span class="score-label">Puntos</span>
+                </div>
+            </article>
+
+            <!-- Tarjeta Ejemplo 2 -->
+            <article class="game-card">
+                <img class="game-image" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/extras/INT9_PC_KeyArt-MotionGraphic.gif?t=1717117701" alt="God of War Ragnarök" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80'">
+                <div class="game-details">
+                    <a href="plantilla_detalle.html"><h3 class="game-title">God of War Ragnarök</h3></a>
+                    <span class="game-platform">PlayStation 5</span>
+                </div>
+                <div class="game-score">
+                    <span class="score-value">9.5</span>
+                    <span class="score-label">Puntos</span>
+                </div>
+            </article>
+
+            <!-- Tarjeta Ejemplo 3 -->
+            <article class="game-card">
+                <img class="game-image" src="https://image.api.playstation.com/vulcan/ap/rnd/202502/1900/631436cfbc1d64659c778e3783f29fafad6022145e0ffec8.jpg" alt="Forza Horizon 5" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80'">
+                <div class="game-details">
+                    <a href="plantilla_detalle.html"><h3 class="game-title">Forza Horizon 5</h3></a>
+                    <span class="game-platform">Xbox Series X</span>
+                </div>
+                <div class="game-score">
+                    <span class="score-value">8.9</span>
+                    <span class="score-label">Puntos</span>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 GameRank. Diseñado exclusivamente con HTML5 y CSS3.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameRank - Plantilla</title>
+    <!-- Se incluye la tipografía requerida -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Variables de color según solicitud (rojo y negro puro) */
+        :root {
+            --bg-color: #0a0a0a; /* Fondo principal casi negro */
+            --navbar-bg: #111111;
+            --card-bg: #1a1a1a;
+            --accent-primary: #e63946; /* Rojo vibrante */
+            --accent-hover: #ff4d5a;
+            --text-main: #f1f1f1;
+            --text-muted: #888888;
+            --border-color: #333333;
+            --font-family: 'Outfit', sans-serif;
+        }
+
+        /* Resets básicos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+        }
+
+        /* Tipografía genérica */
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* Contenedor principal para alienación */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ==================== 
+           NAVBAR 
+           ==================== */
+        .navbar {
+            background-color: var(--navbar-bg);
+            border-bottom: 2px solid var(--accent-primary);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, 
+        .nav-links a.active {
+            color: var(--accent-primary);
+        }
+
+        /* ==================== 
+           MAIN CONTENT LAYOUT 
+           ==================== */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Dos columnas: Lista de juegos / Formulario */
+            gap: 3rem;
+            padding: 3rem 0;
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        /* ==================== 
+           GAME LIST (RANKING)
+           ==================== */
+        .ranking-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.2);
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--accent-primary);
+        }
+
+        .game-image {
+            width: 140px;
+            height: 100px;
+            object-fit: cover;
+            background-color: #111; /* Fallback de fondo */
+        }
+
+        .game-details {
+            flex: 1;
+            padding: 1rem 1.5rem;
+        }
+
+        .game-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .game-platform {
+            display: inline-block;
+            background-color: rgba(255,255,255,0.05);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .game-score {
+            width: 80px;
+            text-align: center;
+            padding: 1rem;
+            border-left: 1px solid var(--border-color);
+        }
+
+        .score-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+            display: block;
+        }
+
+        /* ==================== 
+           ADD GAME FORM
+           ==================== */
+        .form-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            position: sticky;
+            top: 100px; /* Para que baje con el scroll */
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background-color: #0d0d0d;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 4px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        select.form-control {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* ==================== 
+           FOOTER
+           ==================== */
+        footer {
+            background-color: var(--navbar-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <div class="logo">Game<span>Rank</span></div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Ranking</a></li>
+                <li><a href="#anadir-juego">Añadir Juego</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="container main-content">
+        
+        <!-- SECTION: Lista de Juegos -->
+        <section class="ranking-list">
+            <h2 class="section-title">Ranking Global</h2>
+            
+            <div class="ranking-grid">
+                <!-- Tarjeta Ejemplo 1 -->
+                <article class="game-card">
+                    <img class="game-image" src="https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png" alt="The Witcher 3" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80'">
+                    <div class="game-details">
+                        <h3 class="game-title">The Witcher 3: Wild Hunt</h3>
+                        <span class="game-platform">PC Master Race</span>
+                    </div>
+                    <div class="game-score">
+                        <span class="score-value">9.7</span>
+                        <span class="score-label">Puntos</span>
+                    </div>
+                </article>
+
+                <!-- Tarjeta Ejemplo 2 -->
+                <article class="game-card">
+                    <img class="game-image" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/extras/INT9_PC_KeyArt-MotionGraphic.gif?t=1717117701" alt="God of War Ragnarök" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80'">
+                    <div class="game-details">
+                        <h3 class="game-title">God of War Ragnarök</h3>
+                        <span class="game-platform">PlayStation 5</span>
+                    </div>
+                    <div class="game-score">
+                        <span class="score-value">9.5</span>
+                        <span class="score-label">Puntos</span>
+                    </div>
+                </article>
+
+                <!-- Tarjeta Ejemplo 3 -->
+                <article class="game-card">
+                    <img class="game-image" src="https://image.api.playstation.com/vulcan/ap/rnd/202502/1900/631436cfbc1d64659c778e3783f29fafad6022145e0ffec8.jpg" alt="Forza Horizon 5" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80'">
+                    <div class="game-details">
+                        <h3 class="game-title">Forza Horizon 5</h3>
+                        <span class="game-platform">Xbox Series X</span>
+                    </div>
+                    <div class="game-score">
+                        <span class="score-value">8.9</span>
+                        <span class="score-label">Puntos</span>
+                    </div>
+                </article>
+
+                 <!-- Tarjeta Ejemplo 4 -->
+                 <article class="game-card">
+                    <img class="game-image" src="https://www.nintendo.com/eu/media/images/10_share_images/games_15/wiiu_14/SI_WiiU_TheLegendOfZeldaBreathOfTheWild_image1600w.jpg" alt="Zelda BotW" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80'">
+                    <div class="game-details">
+                        <h3 class="game-title">The Legend of Zelda: Breath of the Wild</h3>
+                        <span class="game-platform">Nintendo Switch</span>
+                    </div>
+                    <div class="game-score">
+                        <span class="score-value">9.9</span>
+                        <span class="score-label">Puntos</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SECTION: Formulario de Adición -->
+        <aside id="anadir-juego">
+            <div class="form-container">
+                <h2 class="section-title" style="font-size: 1.4rem;">Nuevo Registro</h2>
+                
+                <form action="#" method="POST">
+                    <!-- Campo: Título (VARCHAR 100) -->
+                    <div class="form-group">
+                        <label for="titulo">Título del Juego</label>
+                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Ej: Half-Life 2" required>
+                    </div>
+
+                    <!-- Campo: Puntuación (DECIMAL 3,1) -->
+                    <div class="form-group">
+                        <label for="puntuacion">Puntuación</label>
+                        <input type="number" id="puntuacion" name="puntuacion" class="form-control" step="0.1" min="0" max="10" placeholder="Ej: 9.8" required>
+                    </div>
+
+                    <!-- Campo: Plataforma (FK) -->
+                    <div class="form-group">
+                        <label for="id_plataforma">Plataforma</label>
+                        <select id="id_plataforma" name="id_plataforma" class="form-control" required>
+                            <option value="">Selecciona una opción...</option>
+                            <option value="1">PC Master Race</option>
+                            <option value="2">PlayStation 5</option>
+                            <option value="3">Xbox Series X</option>
+                            <option value="4">Nintendo Switch</option>
+                            <option value="5">Mobile / iOS / Android</option>
+                        </select>
+                    </div>
+
+                    <!-- Campo: URL Imagen (VARCHAR 255) -->
+                    <div class="form-group">
+                        <label for="imagen_url">URL de la Portada</label>
+                        <input type="url" id="imagen_url" name="imagen_url" class="form-control" placeholder="Promocional (Opcional)">
+                    </div>
+
+                    <button type="submit" class="btn">Guardar Juego</button>
+                </form>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 GameRank. Diseñado exclusivamente con HTML5 y CSS3.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
