@@ -34,29 +34,29 @@ INSERT INTO juegos (titulo, puntuacion, id_plataforma, imagen_url) VALUES
     'The Witcher 3: Wild Hunt',
     9.7,
     1,
-    'https://cdn.cdprojektred.com/witcher/common/images/witcher3/standard-edition-unboxing-cover.jpg'
+    'https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png'
 ),
 (
     'God of War Ragnarök',
     9.5,
     2,
-    'https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/67vMoXfV7ZMo9N2V8u7v0u9u.png'
+    'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/extras/INT9_PC_KeyArt-MotionGraphic.gif?t=1717117701'
 ),
 (
     'Forza Horizon 5',
     8.9,
     3,
-    'https://store-images.s-microsoft.com/image/apps.1475.13735165158654634.6d5c5f8e-d967-4a0d-9a96-98188151ed42.79379854-d835-46fd-a43c-6f81643c168f'
+    'https://image.api.playstation.com/vulcan/ap/rnd/202502/1900/631436cfbc1d64659c778e3783f29fafad6022145e0ffec8.jpg'
 ),
 (
     'The Legend of Zelda: Breath of the Wild',
     9.9,
     4,
-    'https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/f_auto/q_auto/ncom/software/switch/70010000000025/desc/477b7c18-840a-4841-a1e6-234b6b15822f'
+    'https://www.nintendo.com/eu/media/images/10_share_images/games_15/wiiu_14/SI_WiiU_TheLegendOfZeldaBreathOfTheWild_image1600w.jpg'
 ),
 (
     'Genshin Impact',
     8.5,
     5,
-    'https://image.api.playstation.com/vulcan/ap/rnd/202104/1315/22mToXfV7ZMo9N2V8u7v0u9u.png'
+    'https://image.api.playstation.com/vulcan/ap/rnd/202508/2602/30935168a0f21b6710dc2bd7bb37c23ed937fb9fa747d84c.png'
 );

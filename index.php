@@ -61,7 +61,7 @@ $juegos = $stmt->fetchAll();
                         elseif ($index === 1) $rankClass = 'top-2';
                         elseif ($index === 2) $rankClass = 'top-3';
                     ?>
-                    <div class="game-card" id="game-<?php echo $index; ?>">
+                    <div class="game-card" id="game-<?php echo $index; ?>" onclick="window.location.href='detalle_juego<?php echo $juego['id']; ?>.php'" style="cursor: pointer;">
                         <img
                             class="game-thumbnail"
                             src="<?php echo $imgUrl; ?>"
@@ -73,7 +73,11 @@ $juegos = $stmt->fetchAll();
                         >
                         <div class="rank-number <?php echo $rankClass; ?>">#<?php echo $index + 1; ?></div>
                         <div class="game-info">
-                            <h3 class="game-title"><?php echo htmlspecialchars($juego['titulo']); ?></h3>
+                            <h3 class="game-title">
+                                <a href="detalle_juego<?php echo $juego['id']; ?>.php" style="text-decoration: none; color: inherit;">
+                                    <?php echo htmlspecialchars($juego['titulo']); ?>
+                                </a>
+                            </h3>
                             <span class="platform-tag"><?php echo htmlspecialchars($juego['plataforma']); ?></span>
                         </div>
                         <div class="score-container">
